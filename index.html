@@ -42,7 +42,7 @@
       text-align: center;
     }
 
-    /* TC LOGO */
+    /* TC LOGO IMAGE */
     .logo {
       width: 100px;
       height: 100px;
@@ -51,20 +51,14 @@
 
       border-radius: 50%;
 
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      display: block;
 
-      background: rgba(20, 22, 30, 0.85);
+      object-fit: cover;
 
       border: 2px solid rgba(255, 255, 255, 0.25);
 
       box-shadow:
         0 8px 30px rgba(0, 0, 0, 0.45);
-
-      font-size: 32px;
-      font-weight: 900;
-      letter-spacing: -2px;
 
       backdrop-filter: blur(8px);
     }
@@ -177,7 +171,6 @@
       .logo {
         width: 85px;
         height: 85px;
-        font-size: 28px;
       }
 
       h1 {
@@ -200,10 +193,12 @@
 
   <div class="container">
 
-    <!-- TC LOGO -->
-    <div class="logo">
-      TC
-    </div>
+    <!-- TC LOGO IMAGE -->
+    <img
+      class="logo"
+      src="tc-logo.png"
+      alt="TamilCrafters Studio Logo"
+    >
 
     <h1>TamilCrafters Studio</h1>
 
@@ -213,7 +208,6 @@
 
 
     <!-- CURSEFORGE -->
-
     <a
       class="link forge"
       href="https://www.curseforge.com/members/tamil_crafters/projects"
@@ -225,7 +219,6 @@
 
 
     <!-- MC TAMIL COMMUNITY -->
-
     <a
       class="link discord"
       href="https://discord.gg/jSSPdKwEjb"
@@ -237,7 +230,6 @@
 
 
     <!-- TAMILCRAFTERS DISCORD -->
-
     <a
       class="link discord"
       href="https://discord.gg/2bqKNwFZ9N"
@@ -249,7 +241,6 @@
 
 
     <!-- WHATSAPP -->
-
     <a
       class="link whatsapp"
       href="https://chat.whatsapp.com/Lg34P35MKhA582bAGE9n7K?s=cl&p=a&mlu=4"
@@ -261,7 +252,6 @@
 
 
     <!-- MCPEDL -->
-
     <a
       class="link mcpedl"
       href="https://mcpedl.com/user/tamil-crafters"
@@ -273,7 +263,6 @@
 
 
     <!-- YOUTUBE -->
-
     <a
       class="link youtube"
       href="https://youtube.com/@ppygamingtamil?si=ANR1_ETmlZD9fGrq"
@@ -285,7 +274,6 @@
 
 
     <!-- REALM -->
-
     <a
       class="link realm"
       href="https://realms.gg/Tfs3AWPWJKE9gxc"
