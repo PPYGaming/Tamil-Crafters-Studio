@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>TamilCrafters Studio</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      color: white;
+
+      background:
+        linear-gradient(
+          rgba(10, 12, 18, 0.62),
+          rgba(10, 12, 18, 0.82)
+        ),
+        url("background.jpg");
+
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      padding: 30px 18px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 520px;
+      text-align: center;
+    }
+
+    /* TC LOGO IMAGE */
+    .logo {
+      width: 100px;
+      height: 100px;
+
+      margin: 0 auto 18px;
+
+      border-radius: 50%;
+
+      display: block;
+
+      object-fit: cover;
+
+      border: 2px solid rgba(255, 255, 255, 0.25);
+
+      box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.45);
+
+      backdrop-filter: blur(8px);
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 8px;
+
+      text-shadow:
+        0 3px 12px rgba(0, 0, 0, 0.8);
+    }
+
+    .subtitle {
+      color: #d0d0d0;
+      margin-bottom: 28px;
+      font-size: 15px;
+
+      text-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.8);
+    }
+
+    .link {
+      display: block;
+
+      text-decoration: none;
+      color: white;
+
+      background: rgba(25, 28, 36, 0.82);
+
+      margin: 14px 0;
+      padding: 18px 20px;
+
+      border-radius: 16px;
+
+      font-size: 17px;
+      font-weight: bold;
+
+      border: 1px solid rgba(255, 255, 255, 0.14);
+
+      backdrop-filter: blur(10px);
+
+      box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.28);
+
+      transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .link:hover {
+      background: rgba(45, 48, 58, 0.92);
+
+      transform: translateY(-3px);
+
+      box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .link:active {
+      transform: scale(0.98);
+    }
+
+    .forge {
+      border-left: 5px solid #f28c28;
+    }
+
+    .discord {
+      border-left: 5px solid #5865F2;
+    }
+
+    .whatsapp {
+      border-left: 5px solid #25D366;
+    }
+
+    .realm {
+      border-left: 5px solid #55c878;
+    }
+
+    .mcpedl {
+      border-left: 5px solid #ff6b35;
+    }
+
+    .youtube {
+      border-left: 5px solid #ff0000;
+    }
+
+    .footer {
+      margin-top: 30px;
+
+      color: #c0c0c0;
+
+      font-size: 13px;
+
+      text-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.8);
+    }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
+
+      body {
+        padding: 25px 15px;
+      }
+
+      .container {
+        max-width: 500px;
+      }
+
+      .logo {
+        width: 85px;
+        height: 85px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      .subtitle {
+        font-size: 14px;
+      }
+
+      .link {
+        padding: 17px 15px;
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- TC LOGO IMAGE -->
+    <img
+      class="logo"
+      src="tc-logo.png"
+      alt="TamilCrafters Studio Logo"
+    >
+
+    <h1>TamilCrafters Studio</h1>
+
+    <p class="subtitle">
+      Minecraft Bedrock • Community • Addons
+    </p>
+
+
+    <!-- CURSEFORGE -->
+    <a
+      class="link forge"
+      href="https://www.curseforge.com/members/tamil_crafters/projects"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      ⚙️ CurseForge Projects
+    </a>
+
+
+    <!-- MC TAMIL COMMUNITY -->
+    <a
+      class="link discord"
+      href="https://discord.gg/jSSPdKwEjb"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      💬 MC Tamil Community
+    </a>
+
+
+    <!-- TAMILCRAFTERS DISCORD -->
+    <a
+      class="link discord"
+      href="https://discord.gg/2bqKNwFZ9N"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      💬 TamilCrafters Discord
+    </a>
+
+
+    <!-- WHATSAPP -->
+    <a
+      class="link whatsapp"
+      href="https://chat.whatsapp.com/Lg34P35MKhA582bAGE9n7K?s=cl&p=a&mlu=4"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      📱 WhatsApp Community
+    </a>
+
+
+    <!-- MCPEDL -->
+    <a
+      class="link mcpedl"
+      href="https://mcpedl.com/user/tamil-crafters"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      🧱 MCPEDL Profile
+    </a>
+
+
+    <!-- YOUTUBE -->
+    <a
+      class="link youtube"
+      href="https://youtube.com/@ppygamingtamil?si=ANR1_ETmlZD9fGrq"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      ▶️ YouTube Channel
+    </a>
+
+
+    <!-- REALM -->
+    <a
+      class="link realm"
+      href="https://realms.gg/Tfs3AWPWJKE9gxc"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      🌐 TamilCrafters Realm
+    </a>
+
+
+    <div class="footer">
+      © 2026 TamilCrafters Studio
+    </div>
+
+  </div>
+
+</body>
+</html>
