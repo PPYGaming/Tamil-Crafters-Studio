@@ -15,22 +15,24 @@
     h1{font-size:clamp(30px,6vw,46px);margin-top:18px;text-shadow:0 3px 14px rgba(0,0,0,.8)}
     .sub{color:#cfd3dc;margin-top:8px;font-size:16px}
     h2{font-size:13px;letter-spacing:2.5px;color:#aab1c0;margin:32px 4px 12px;font-weight:600}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
-    .link{--a:#7c8cff;display:flex;align-items:center;gap:14px;height:92px;text-decoration:none;color:#fff;padding:12px 18px;border-radius:18px;
-      font-size:18px;font-weight:700;background:rgba(25,28,36,.82);border:1px solid rgba(255,255,255,.14);border-left:5px solid var(--a);
-      backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 8px 25px rgba(0,0,0,.3);transition:transform .2s,background .2s,box-shadow .2s}
-    .link:hover{background:rgba(45,48,58,.92);transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,.4)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+    .link{--a:#7c8cff;position:relative;overflow:hidden;display:flex;align-items:center;gap:16px;height:112px;text-decoration:none;color:#fff;padding:12px 18px 12px 14px;border-radius:26px;
+      font-size:clamp(17px,4.6vw,21px);font-weight:700;letter-spacing:.2px;text-shadow:0 1px 6px rgba(0,0,0,.55);
+      background:linear-gradient(135deg,rgba(255,246,230,.28),rgba(255,236,205,.10) 55%,rgba(255,246,230,.18));
+      border:1px solid rgba(255,248,235,.42);border-bottom-color:rgba(255,248,235,.16);
+      -webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%);
+      box-shadow:inset 0 1.5px 0 rgba(255,255,255,.55),inset 0 -1px 0 rgba(255,255,255,.12),inset 4px 0 0 var(--a),0 10px 30px rgba(0,0,0,.30);
+      transition:transform .2s,background .2s,box-shadow .2s}
+    .link::before{content:"";position:absolute;left:8%;right:8%;top:0;height:46%;border-radius:0 0 50% 50%/0 0 100% 100%;background:linear-gradient(rgba(255,255,255,.22),rgba(255,255,255,0));pointer-events:none}
+    .link:hover{transform:translateY(-3px);background:linear-gradient(135deg,rgba(255,246,230,.36),rgba(255,236,205,.16) 55%,rgba(255,246,230,.26))}
     .link:active{transform:scale(.98)}
     .link:focus-visible{outline:2px solid #fff;outline-offset:3px}
-    .icon{width:68px;height:68px;flex:none;object-fit:contain;border-radius:15px}
-    .link::after{content:"";width:68px;flex:none}
-    .label{flex:1;min-width:0;text-align:center}
-    .c-anime{height:136px}
-    .c-anime .icon{width:116px;height:116px;margin:-8px -24px -8px -8px;border-radius:16px;image-rendering:auto}
+    .icon{width:88px;height:88px;flex:none;object-fit:cover;border-radius:20px;box-shadow:0 4px 14px rgba(0,0,0,.35);position:relative}
+    .label{flex:1;min-width:0;text-align:left;position:relative}
     .c-bed{--a:#14b8a6}.c-java{--a:#f59e0b}.c-cmd{--a:#facc15}.c-packs{--a:#4ade80}.c-anime{--a:#ec4899}
     .forge{--a:#f28c28}.discord{--a:#5865F2}.whatsapp{--a:#25D366}.airi{--a:#ff5c8d}.youtube{--a:#ff0000}.mcpedl{--a:#3fae49}
     footer{text-align:center;color:#8d94a5;font-size:13px;margin-top:44px}
-    @media(max-width:480px){.hero{padding-top:34px}.link{font-size:17px}}
+    @media(max-width:480px){.hero{padding-top:34px}.link{gap:12px;padding-right:12px}}
     @media(prefers-reduced-motion:reduce){*{transition:none!important}}
   </style>
 </head>
@@ -44,26 +46,26 @@
 
     <h2>TOOLS</h2>
     <section class="grid">
-      <a class="link c-bed" href="https://ppygaming.github.io/Animated-totem/" target="_blank" rel="noopener noreferrer"><img class="icon" src="icons/bedrock.png" alt="" width="68" height="68"><span class="label">Bedrock Totem Creator</span></a>
-      <a class="link c-java" href="https://ppygaming.github.io/Java-animated-totem/" target="_blank" rel="noopener noreferrer"><img class="icon" src="icons/java.png" alt="" width="68" height="68"><span class="label">Java Totem Creator</span></a>
-      <a class="link c-cmd" href="https://ppygaming.github.io/Quick_ommand_Button/" target="_blank" rel="noopener noreferrer"><img class="icon" src="icons/command.png" alt="" width="68" height="68"><span class="label">Quick Command Button</span></a>
+      <a class="link c-bed" href="https://ppygaming.github.io/Animated-totem/" target="_blank" rel="noopener noreferrer"><img class="icon" src="icons/bedrock.png" alt="" width="88" height="88"><span class="label">Bedrock Totem Creator</span></a>
+      <a class="link c-java" href="https://ppygaming.github.io/Java-animated-totem/" target="_blank" rel="noopener noreferrer"><img class="icon" src="icons/java.png" alt="" width="88" height="88"><span class="label">Java Totem Creator</span></a>
+      <a class="link c-cmd" href="https://ppygaming.github.io/Quick_ommand_Button/" target="_blank" rel="noopener noreferrer"><img class="icon" src="icons/command.png" alt="" width="88" height="88"><span class="label">Quick Command Button</span></a>
     </section>
 
     <h2>PROJECTS</h2>
     <section class="grid">
-      <a class="link c-packs" href="https://addons.tamilcraftersstudio.in/" target="_blank" rel="noopener noreferrer"><img class="icon" src="icons/packs.png" alt="" width="68" height="68"><span class="label">Free Packs Website</span></a>
-      <a class="link c-anime" href="https://ppygaming.github.io/Tamil-anime/" target="_blank" rel="noopener noreferrer"><img class="icon" src="icons/anime.png" alt="" width="68" height="68"><span class="label">Tamil Dub Anime</span></a>
+      <a class="link c-packs" href="https://addons.tamilcraftersstudio.in/" target="_blank" rel="noopener noreferrer"><img class="icon" src="icons/packs.png" alt="" width="88" height="88"><span class="label">Free Packs Website</span></a>
+      <a class="link c-anime" href="https://ppygaming.github.io/Tamil-anime/" target="_blank" rel="noopener noreferrer"><img class="icon" src="icons/anime.png" alt="" width="88" height="88"><span class="label">Tamil Dub Anime</span></a>
     </section>
 
     <h2>FIND US</h2>
     <section class="grid">
-      <a class="link forge" href="https://www.curseforge.com/members/tamil_crafters/projects" target="_blank" rel="noopener noreferrer"><img class="icon" src="curseforge.png" alt="" width="68" height="68"><span class="label">CurseForge Projects</span></a>
-      <a class="link mcpedl" href="https://mcpedl.com/user/tamil-crafters" target="_blank" rel="noopener noreferrer"><img class="icon" src="mcpedl.png" alt="" width="68" height="68"><span class="label">MCPEDL Profile</span></a>
-      <a class="link youtube" href="https://youtube.com/@ppygamingtamil?si=ANR1_ETmlZD9fGrq" target="_blank" rel="noopener noreferrer"><img class="icon" src="youtube.png" alt="" width="68" height="68"><span class="label">YouTube Channel</span></a>
-      <a class="link discord" href="https://discord.gg/2bqKNwFZ9N" target="_blank" rel="noopener noreferrer"><img class="icon" src="discord.png" alt="" width="68" height="68"><span class="label">TamilCrafters Discord</span></a>
-      <a class="link discord" href="https://discord.gg/jSSPdKwEjb" target="_blank" rel="noopener noreferrer"><img class="icon" src="discord.png" alt="" width="68" height="68"><span class="label">MC Tamil Community</span></a>
-      <a class="link whatsapp" href="https://chat.whatsapp.com/Lg34P35MKhA582bAGE9n7K?s=cl&amp;p=a&amp;mlu=4" target="_blank" rel="noopener noreferrer"><img class="icon" src="whatsapp.png" alt="" width="68" height="68"><span class="label">WhatsApp Community</span></a>
-      <a class="link airi" href="https://discord.com/discovery/applications/1348514734110150657" target="_blank" rel="noopener noreferrer"><img class="icon" src="airi.png" alt="" width="68" height="68"><span class="label">Airi Bot</span></a>
+      <a class="link forge" href="https://www.curseforge.com/members/tamil_crafters/projects" target="_blank" rel="noopener noreferrer"><img class="icon" src="curseforge.png" alt="" width="88" height="88"><span class="label">CurseForge Projects</span></a>
+      <a class="link mcpedl" href="https://mcpedl.com/user/tamil-crafters" target="_blank" rel="noopener noreferrer"><img class="icon" src="mcpedl.png" alt="" width="88" height="88"><span class="label">MCPEDL Profile</span></a>
+      <a class="link youtube" href="https://youtube.com/@ppygamingtamil?si=ANR1_ETmlZD9fGrq" target="_blank" rel="noopener noreferrer"><img class="icon" src="youtube.png" alt="" width="88" height="88"><span class="label">YouTube Channel</span></a>
+      <a class="link discord" href="https://discord.gg/2bqKNwFZ9N" target="_blank" rel="noopener noreferrer"><img class="icon" src="discord.png" alt="" width="88" height="88"><span class="label">TamilCrafters Discord</span></a>
+      <a class="link discord" href="https://discord.gg/jSSPdKwEjb" target="_blank" rel="noopener noreferrer"><img class="icon" src="discord.png" alt="" width="88" height="88"><span class="label">MC Tamil Community</span></a>
+      <a class="link whatsapp" href="https://chat.whatsapp.com/Lg34P35MKhA582bAGE9n7K?s=cl&amp;p=a&amp;mlu=4" target="_blank" rel="noopener noreferrer"><img class="icon" src="whatsapp.png" alt="" width="88" height="88"><span class="label">WhatsApp Community</span></a>
+      <a class="link airi" href="https://discord.com/discovery/applications/1348514734110150657" target="_blank" rel="noopener noreferrer"><img class="icon" src="airi.png" alt="" width="88" height="88"><span class="label">Airi Bot</span></a>
     </section>
 
     <footer>&copy; 2026 TamilCrafters Studio</footer>
