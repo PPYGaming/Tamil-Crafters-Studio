@@ -33,7 +33,7 @@
     .icon{width:88px;height:88px;flex:none;object-fit:cover;border-radius:20px;box-shadow:0 4px 14px rgba(0,0,0,.35);position:relative}
     .airi .icon{object-fit:contain;background:rgba(255,236,215,.55)}
     .label{flex:1;min-width:0;text-align:left;position:relative}
-    .c-bed{--a:#14b8a6}.c-java{--a:#f59e0b}.c-cmd{--a:#facc15}.c-packs{--a:#4ade80}.c-anime{--a:#ec4899}
+    .c-bed{--a:#14b8a6}.c-java{--a:#f59e0b}.c-cmd{--a:#facc15}.c-packs{--a:#4ade80}.c-anime{--a:#ec4899}.c-voice{--a:#8b5cf6}
     .forge{--a:#f28c28}.discord{--a:#5865F2}.whatsapp{--a:#25D366}.airi{--a:#ff5c8d}.youtube{--a:#ff0000}.mcpedl{--a:#3fae49}
     footer{text-align:center;color:#8d94a5;font-size:13px;margin-top:44px}
     @media(max-width:480px){.hero{padding-top:34px}.link{gap:12px;padding-right:12px}}
@@ -59,6 +59,7 @@
     <section class="grid">
       <a class="link c-packs" href="https://addons.tamilcraftersstudio.in/" target="_blank" rel="noopener noreferrer"><img class="icon" src="icons/packs.png" alt="" width="88" height="88"><span class="label">Free Packs Website</span></a>
       <a class="link airi" href="https://discord.com/discovery/applications/1348514734110150657" target="_blank" rel="noopener noreferrer"><img class="icon" src="airi.png" alt="" width="88" height="88"><span class="label">Airi Bot</span></a>
+      <a class="link c-voice" id="voiceroom-card" href="https://voiceroom.tamilcraftersstudio.in/VoiceRoom-r1f1307fb0c7.apk"><img class="icon" src="icons/voiceroom.png" alt="" width="88" height="88"><span class="label">Voice Room</span></a>
     </section>
 
     <h2>FIND US</h2>
@@ -73,6 +74,7 @@
 
     <footer>&copy; 2026 TamilCrafters Studio</footer>
   </div>
+  <script>fetch("https://voiceroom.tamilcraftersstudio.in/version.json").then(function(r){return r.json()}).then(function(v){if(v&&v.apk)document.getElementById("voiceroom-card").href=v.apk}).catch(function(){})</script>
   <script src="fx.js" defer></script>
 </body>
 </html>
