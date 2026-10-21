@@ -5,11 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TamilCrafters Studio</title>
   <link rel="icon" type="image/png" sizes="192x192" href="/tc-logo-192.png"><link rel="icon" type="image/png" sizes="512x512" href="/tc-logo-512.png"><link rel="icon" type="image/png" sizes="48x48" href="/tc-logo-48.png"><link rel="shortcut icon" href="/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/tc-logo-180.png">
+  <link rel="preload" as="image" href="background.webp" type="image/webp" fetchpriority="high">
+  <link rel="preload" as="image" href="tc-logo.webp" type="image/webp" fetchpriority="high">
+  <link rel="preload" as="image" href="icons/bedrock.webp" type="image/webp">
+  <link rel="preload" as="image" href="icons/java.webp" type="image/webp">
+  <link rel="preload" as="image" href="icons/command.webp" type="image/webp">
+  <link rel="preload" as="image" href="icons/packs.webp" type="image/webp">
+  <link rel="preload" as="image" href="icons/voiceroom.webp" type="image/webp">
+  <script>document.documentElement.className+=" js"</script>
   <meta name="description" content="TamilCrafters Studio: free Minecraft packs, totem creators, command tools and Tamil anime in one place.">
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
     body{min-height:100vh;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:#fff;
-      background:linear-gradient(rgba(8,10,16,.55),rgba(8,10,16,.9)),url("background.jpg") center/cover fixed;padding:0 18px 40px}
+      background:linear-gradient(rgba(8,10,16,.55),rgba(8,10,16,.9)),url("background.jpg") center/cover fixed;
+    background:linear-gradient(rgba(8,10,16,.55),rgba(8,10,16,.9)),image-set(url("background.webp") type("image/webp"),url("background.jpg") type("image/jpeg")) center/cover fixed;padding:0 18px 40px}
     .wrap{max-width:1120px;margin:0 auto}
     .hero{text-align:center;padding:52px 0 28px}
     .logo{width:112px;height:112px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.3);box-shadow:0 0 0 6px rgba(255,255,255,.06),0 14px 40px rgba(0,0,0,.55)}
@@ -37,29 +46,77 @@
     .forge{--a:#f28c28}.discord{--a:#5865F2}.whatsapp{--a:#25D366}.airi{--a:#ff5c8d}.youtube{--a:#ff0000}.mcpedl{--a:#3fae49}
     footer{text-align:center;color:#8d94a5;font-size:13px;margin-top:44px}
     @media(max-width:480px){.hero{padding-top:34px}.link{gap:12px;padding-right:12px}}
+
+
+    /* Loading screen: logo materializes, real progress, burst exit */
+    #loader{position:fixed;inset:0;z-index:10000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;
+      background:radial-gradient(130% 130% at 50% 16%,#171b2e 0%,#0a0d16 62%);
+      transition:opacity .55s ease,transform .55s ease}
+    #loader.hide{opacity:0;transform:scale(1.06);pointer-events:none}
+    #loaderFx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+    #loader .stage{position:relative;width:150px;height:150px;display:grid;place-items:center}
+    #loader .orbit{position:absolute;inset:0;border-radius:50%;
+      background:conic-gradient(from 0deg,#ffd54a,#7c8cff,#ff5c8d,rgba(255,213,74,0) 72%,#ffd54a);
+      -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 4px),#000 calc(100% - 3.5px));
+      mask:radial-gradient(farthest-side,transparent calc(100% - 4px),#000 calc(100% - 3.5px));
+      animation:tcspin 2.4s linear infinite}
+    #loader .stack{position:relative;width:112px;height:112px;border-radius:50%;overflow:hidden;
+      border:2px solid rgba(255,255,255,.28);box-shadow:0 0 0 6px rgba(255,255,255,.05),0 0 34px rgba(255,213,74,.22),0 14px 40px rgba(0,0,0,.55)}
+    #loader .stack img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    #loader .pix{image-rendering:pixelated}
+    #loader .full{opacity:0;transform:scale(1.12);transition:opacity .55s ease,transform .55s ease}
+    #loader.revealed .full{opacity:1;transform:scale(1)}
+    #loader .shine{position:absolute;inset:0;border-radius:50%;overflow:hidden;pointer-events:none}
+    #loader .shine::after{content:"";position:absolute;inset:-40%;transform:translateX(-130%) rotate(8deg);
+      background:linear-gradient(100deg,transparent 42%,rgba(255,255,255,.5) 50%,transparent 58%);
+      animation:tcshine 3s ease-in-out 1.1s infinite}
+    #loader .bar{width:min(220px,58vw);height:4px;border-radius:99px;background:rgba(255,255,255,.10);overflow:hidden}
+    #loader .fill{height:100%;width:0%;border-radius:99px;background:linear-gradient(90deg,#ffd54a,#ff9ccf,#7c8cff);
+      box-shadow:0 0 12px rgba(255,213,74,.6);transition:width .3s ease}
+    #loader p{font-size:11px;letter-spacing:4.5px;color:#9aa2b5;font-weight:600;animation:tcglow 1.6s ease-in-out infinite alternate}
+    @keyframes tcspin{to{transform:rotate(360deg)}}
+    @keyframes tcshine{0%{transform:translateX(-130%) rotate(8deg)}55%,100%{transform:translateX(130%) rotate(8deg)}}
+    @keyframes tcglow{from{opacity:.55}to{opacity:1}}
+    html.js body:not(.ready) .wrap{opacity:0;transform:translateY(14px)}
+    html.js .wrap{transition:opacity .6s ease .08s,transform .6s ease .08s}
+    @media(prefers-reduced-motion:reduce){#loader .orbit,#loader .shine::after,#loader p{animation:none}#loaderFx{display:none}}
     @media(prefers-reduced-motion:reduce){*{transition:none!important}}
   </style>
 </head>
 <body>
+  <div id="loader" role="status" aria-label="Loading">
+    <canvas id="loaderFx" aria-hidden="true"></canvas>
+    <div class="stage">
+      <div class="orbit"></div>
+      <div class="stack">
+        <img class="pix" src="tc-logo-48.png" alt="">
+        <img class="full" src="tc-logo.webp" alt="TamilCrafters Studio">
+        <div class="shine"></div>
+      </div>
+    </div>
+    <div class="bar"><div class="fill"></div></div>
+    <p>TAMILCRAFTERS STUDIO</p>
+  </div>
+  <noscript><style>#loader{display:none}</style></noscript>
   <div class="wrap">
     <header class="hero">
-      <img class="logo" src="tc-logo.png" alt="TamilCrafters Studio logo">
+      <picture><source srcset="tc-logo.webp" type="image/webp"><img class="logo" src="tc-logo.png" alt="TamilCrafters Studio logo" fetchpriority="high"></picture>
       <h1>TamilCrafters Studio</h1>
       <p class="sub">Minecraft packs &bull; Creator tools &bull; Community</p>
     </header>
 
     <h2>TOOLS</h2>
     <section class="grid">
-      <a class="link c-bed" href="https://bedrock-animated-totem.tamilcraftersstudio.in/" target="_blank" rel="noopener noreferrer"><img class="icon" src="icons/bedrock.png" alt="" width="88" height="88"><span class="label">Bedrock Totem Creator</span></a>
-      <a class="link c-java" href="https://java-animated-totem.tamilcraftersstudio.in/" target="_blank" rel="noopener noreferrer"><img class="icon" src="icons/java.png" alt="" width="88" height="88"><span class="label">Java Totem Creator</span></a>
-      <a class="link c-cmd" href="https://mcpe-quick-command-button.tamilcraftersstudio.in/" target="_blank" rel="noopener noreferrer"><img class="icon" src="icons/command.png" alt="" width="88" height="88"><span class="label">Quick Command Button</span></a>
+      <a class="link c-bed" href="https://bedrock-animated-totem.tamilcraftersstudio.in/" target="_blank" rel="noopener noreferrer"><img class="icon" src="icons/bedrock.webp" alt="" width="88" height="88"><span class="label">Bedrock Totem Creator</span></a>
+      <a class="link c-java" href="https://java-animated-totem.tamilcraftersstudio.in/" target="_blank" rel="noopener noreferrer"><img class="icon" src="icons/java.webp" alt="" width="88" height="88"><span class="label">Java Totem Creator</span></a>
+      <a class="link c-cmd" href="https://mcpe-quick-command-button.tamilcraftersstudio.in/" target="_blank" rel="noopener noreferrer"><img class="icon" src="icons/command.webp" alt="" width="88" height="88"><span class="label">Quick Command Button</span></a>
     </section>
 
     <h2>PROJECTS</h2>
     <section class="grid">
-      <a class="link c-packs" href="https://addons.tamilcraftersstudio.in/" target="_blank" rel="noopener noreferrer"><img class="icon" src="icons/packs.png" alt="" width="88" height="88"><span class="label">Free Packs Website</span></a>
+      <a class="link c-packs" href="https://addons.tamilcraftersstudio.in/" target="_blank" rel="noopener noreferrer"><img class="icon" src="icons/packs.webp" alt="" width="88" height="88"><span class="label">Free Packs Website</span></a>
       <a class="link airi" href="https://discord.com/discovery/applications/1348514734110150657" target="_blank" rel="noopener noreferrer"><img class="icon" src="airi.png" alt="" width="88" height="88"><span class="label">Airi Bot</span></a>
-      <a class="link c-voice" id="voiceroom-card" href="https://voiceroom.tamilcraftersstudio.in/VoiceRoom-r1f1307fb0c7.apk"><img class="icon" src="icons/voiceroom.png" alt="" width="88" height="88"><span class="label">Voice Room</span></a>
+      <a class="link c-voice" id="voiceroom-card" href="https://voiceroom.tamilcraftersstudio.in/VoiceRoom-r1f1307fb0c7.apk"><img class="icon" src="icons/voiceroom.webp" alt="" width="88" height="88"><span class="label">Voice Room</span></a>
     </section>
 
     <h2>FIND US</h2>
@@ -74,6 +131,34 @@
 
     <footer>&copy; 2026 TamilCrafters Studio</footer>
   </div>
+<script>(function(){
+var l=document.getElementById("loader");if(!l)return;
+var fill=l.querySelector(".fill"),done=0,finished=false;
+var reduced=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+var imgs=["background.webp","tc-logo.webp","icons/bedrock.webp","icons/java.webp","icons/command.webp","icons/packs.webp","icons/voiceroom.webp","airi.png"];
+function step(){done++;fill.style.width=Math.round(done/imgs.length*100)+"%";if(done>=imgs.length)finish()}
+imgs.forEach(function(s){var im=new Image();im.onload=step;im.onerror=step;im.src=s});
+var r=new Image();r.onload=function(){l.classList.add("revealed")};r.src="tc-logo.webp";
+setTimeout(function(){l.classList.add("revealed")},1700);
+function finish(){if(finished)return;finished=true;fill.style.width="100%";burst();setTimeout(hide,reduced?60:420)}
+function hide(){if(l.classList.contains("hide"))return;l.classList.add("hide");document.body.classList.add("ready");setTimeout(function(){l.remove()},700)}
+setTimeout(hide,3500);
+/* ambient embers + finish burst */
+var cv=document.getElementById("loaderFx");
+if(cv&&!reduced){var ctx=cv.getContext("2d"),dpr=Math.min(devicePixelRatio||1,2),W,H;
+function size(){W=innerWidth;H=innerHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}
+size();addEventListener("resize",size);
+var C=["#ffd54a","#7c8cff","#ff9ccf","#7ff0e0","#ffffff"],amb=[],sparks=[],t0=performance.now(),run=true;
+for(var i=0;i<26;i++)amb.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:.8+Math.random()*1.8,c:C[(Math.random()*C.length)|0],s:8+Math.random()*22,o:.15+Math.random()*.4,ph:Math.random()*6.28});
+function burst(){var cx=innerWidth/2,cy=innerHeight/2;for(var i=0;i<46;i++){var a=Math.random()*6.2832,sp=120+Math.random()*300;sparks.push({x:cx,y:cy,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-30,life:0,max:.5+Math.random()*.5,r:1.6+Math.random()*2.8,c:C[(Math.random()*C.length)|0]})}}
+var last=t0;
+function frame(now){if(!document.body.contains(cv))return;var dt=Math.min((now-last)/1000,.05);last=now;ctx.clearRect(0,0,W,H);
+ctx.globalCompositeOperation="lighter";
+for(var i=0;i<amb.length;i++){var p=amb[i];p.y-=p.s*dt;if(p.y<-4){p.y=H+4;p.x=Math.random()*W}ctx.globalAlpha=p.o*(.6+.4*Math.sin(now/700+p.ph));ctx.fillStyle=p.c;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.2832);ctx.fill()}
+for(var i=sparks.length-1;i>=0;i--){var p=sparks[i];p.life+=dt;if(p.life>=p.max){sparks.splice(i,1);continue}var t=p.life/p.max;p.vy+=300*dt;p.x+=p.vx*dt;p.y+=p.vy*dt;ctx.globalAlpha=1-t;ctx.fillStyle=p.c;ctx.beginPath();ctx.arc(p.x,p.y,p.r*(1-.4*t),0,6.2832);ctx.fill()}
+ctx.globalAlpha=1;ctx.globalCompositeOperation="source-over";requestAnimationFrame(frame)}
+requestAnimationFrame(frame)}
+})()</script>
   <script>fetch("https://voiceroom.tamilcraftersstudio.in/version.json").then(function(r){return r.json()}).then(function(v){if(v&&v.apk)document.getElementById("voiceroom-card").href=v.apk}).catch(function(){})</script>
   <script src="fx.js" defer></script>
 </body>
